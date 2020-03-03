@@ -3,7 +3,7 @@ package com.wusi.reimbursement.controller;
 import com.wusi.reimbursement.common.Response;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletResponse;
@@ -15,14 +15,10 @@ import java.io.*;
  * @ CreateDate    :  2020/1/15$ 17:28$
  */
 @RestController
-public class DownLoadController  {
-    @RequestMapping("/ok")
-    public  Response<String> ok(){
-        System.out.println("ok");
-        return Response.ok("2020-01-21");
-    }
+public class OpenController {
     @GetMapping(value = "/downloadExcel/{key}")
-    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "key")String key) throws IOException {
+    @ResponseBody
+    public Response<String> fileDownLoad(@PathVariable(value = "key")String key,HttpServletResponse response) throws IOException {
         System.out.println(key);
         File file = new File(key);
         String fileName = file.getName();
