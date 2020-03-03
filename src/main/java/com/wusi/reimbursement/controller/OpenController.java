@@ -14,11 +14,11 @@ import java.io.*;
 @RestController
 @RequestMapping(value = "/api/open/")
 public class OpenController {
-    @GetMapping(value = "/downloadExcel/{key}")
-    @ResponseBody
+    /*@GetMapping(value = "/downloadExcel/{key}")
+    @ResponseBody*/
     public Response<String> fileDownLoad(@PathVariable(value = "key")String key,HttpServletResponse response) throws IOException {
         System.out.println(key);
-        File file = new File(key);
+        File file = new File("/home/excel/20200303171110.xlsx");
         String fileName = file.getName();
         System.out.println(fileName);
         //InputStream ins = new FileInputStream(file);
