@@ -83,8 +83,8 @@ public class BaseController {
         reimbursementList.setTotalPrice(reimbursement.getTotalPrice());
         reimbursementList.setBuyChannel(reimbursement.getBuyChannel());
         reimbursementList.setBuyDate(DateUtil.formatDate(reimbursement.getBuyDate(), DateUtil.PATTERN_YYYY_MM_DD));
-        reimbursementList.setReimbursementDate(reimbursement.getReimbursementDate()==null ? "未上交单据":DateUtil.formatDate(reimbursement.getReimbursementDate(), DateUtil.PATTERN_YYYY_MM_DD));
-        reimbursementList.setRemitDate(reimbursement.getRemitDate()==null ? "未到账":DateUtil.formatDate(reimbursement.getRemitDate(), DateUtil.PATTERN_YYYY_MM_DD));
+        reimbursementList.setReimbursementDate(reimbursement.getReimbursementDate()==null ? "未上交单据": DateUtil.formatDate(reimbursement.getReimbursementDate(), DateUtil.PATTERN_YYYY_MM_DD));
+        reimbursementList.setRemitDate(reimbursement.getRemitDate()==null ? "未到账": DateUtil.formatDate(reimbursement.getRemitDate(), DateUtil.PATTERN_YYYY_MM_DD));
         reimbursementList.setState(reimbursement.getStateDesc());
         reimbursementList.setRemark(reimbursement.getRemark());
         return reimbursementList;
@@ -135,7 +135,11 @@ public class BaseController {
     @ResponseBody
     public Response<String> save(ReimbursementList reimbursementList) throws ParseException {
         Reimbursement reimbursement=saveReimbursement(reimbursementList);
-        reimbursementService.insert(reimbursement);
+        List<Reimbursement> list=new ArrayList<>();
+        for(int i=0;i<10000;i++){
+            list.add(reimbursement);
+        }
+        reimbursementService.insertBatch(list);
         return Response.ok("");
     }
     private Reimbursement saveReimbursement(ReimbursementList reimbursementList) throws ParseException {

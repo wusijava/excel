@@ -37,7 +37,7 @@ spring:
         max-active: 200
 excelDownloadUrl: http://49.233.192.222:8083/downloadExcel/
 server:
-  port: 8083
+  port: 8084
 mybatis:
   mapper-locations: classpath:com/wusi/reimbursement/*Mapper.xml
   configuration:

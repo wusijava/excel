@@ -9,7 +9,6 @@ import com.wusi.reimbursement.service.ReimbursementService;
 import com.wusi.reimbursement.utils.DataUtil;
 import com.wusi.reimbursement.utils.DateUtil;
 import com.wusi.reimbursement.utils.PoiUtil;
-import com.wusi.reimbursement.utils.RedisUtil;
 import com.wusi.reimbursement.vo.ReimbursementVo;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
@@ -28,7 +27,6 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
-import java.util.UUID;
 
 
 /**
@@ -99,7 +97,7 @@ public class ExportController {
     }
     @RequestMapping(value = "Export", method = RequestMethod.POST)
     @ResponseBody
-    public Response<String> batchExport(ReimbursementQuery query) {
+    public Response<String> batchExport(ReimbursementQuery query) throws Exception {
         List<Reimbursement> reimbursementList = reimbursementService.queryList(query);
         List<ReimbursementVo> voList = new ArrayList<>();
         int index = 1;
@@ -113,10 +111,14 @@ public class ExportController {
         dto.setHeaders(ReimbursementVo.headers);
         dto.setKeys(ReimbursementVo.keys);
         dto.setObjectList(parser(voList));
-        String key = UUID.randomUUID().toString().replaceAll("-", "");
-        RedisUtil.set(key, dto, 1000 * 60 * 30L);
-        String url = excelDownloadUrl + key;
-        return Response.ok(url);
+       // String key = UUID.randomUUID().toString().replaceAll("-", "");
+        String filename =excelDownloadUrl + DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
+       /* RedisUtil.set(key, dto, 1000 * 60 * 30L);
+        String url = excelDownloadUrl + key;*/
+
+        downloadExcel(dto,filename);
+        return Response.ok(filename);
+
     }
     private List<JSONObject> parser(List<ReimbursementVo> reimbursementVo) {
         return JSONObject.parseArray(JSONObject.toJSONString(reimbursementVo), JSONObject.class);
@@ -133,5 +135,8 @@ public class ExportController {
         reimbursementList.setState(reimbursement.getStateDesc());
         reimbursementList.setRemark(reimbursement.getRemark());
         return reimbursementList;
+    }
+    public void downloadExcel(ExcelDto dto,String filename) throws Exception {
+        PoiUtil.batchExport(dto.getHeaders(), dto.getKeys(),dto.getObjectList(),filename);
     }
 }

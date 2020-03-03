@@ -1,6 +1,7 @@
 package com.wusi.reimbursement.controller;
 
 import com.wusi.reimbursement.common.Response;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -19,10 +20,10 @@ public class DownLoadController  {
         System.out.println("ok");
         return Response.ok("2020-01-21");
     }
-    @RequestMapping("fileDownload")
-    public Response<String> fileDownLoad(HttpServletResponse response) throws IOException {
+    @GetMapping(value = "/downloadExcel/{filename}")
+    public Response<String> fileDownLoad(HttpServletResponse response,String filename) throws IOException {
         System.out.println("进入文件下载controller");
-        File file = new File("/home/file/报销记录导入模板.xls");
+        File file = new File("/home/file/"+filename);
         String fileName = file.getName();
         //InputStream ins = new FileInputStream(file);
         InputStream fis=new BufferedInputStream(new FileInputStream(file));

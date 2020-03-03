@@ -7,10 +7,8 @@ import org.apache.poi.xssf.usermodel.*;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
-import java.util.Date;
 import java.util.List;
 
 /**
@@ -54,13 +52,12 @@ public class PoiUtil {
     /**
      * 批量导出
      *
-     * @param request
-     * @param response
+
      * @param headers
      * @param keys
      * @param lists
      */
-    public static void batchExport(String[] headers, String[] keys, List<JSONObject> lists, HttpServletRequest request, HttpServletResponse response) throws Exception {
+    public static void batchExport(String[] headers, String[] keys, List<JSONObject> lists,String filename) throws Exception {
         XSSFWorkbook wb = new XSSFWorkbook();
         XSSFSheet sheet = wb.createSheet("Sheet1");
         sheet.setDefaultColumnWidth(18);
@@ -86,12 +83,12 @@ public class PoiUtil {
                 cell.setCellValue(obj.getString(keys[i]));
             }
         }
-        String filename = "导出信息" + DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
-        String filepath = request.getRealPath("/") + filename;
-        FileOutputStream out = new FileOutputStream(filepath);
+        //String filename = "导出信息" + DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
+        //String filepath = request.getRealPath("/") + filename;
+     FileOutputStream out = new FileOutputStream("/home/excel/"+filename);
         wb.write(out);
         out.close();
-        downloadExcel(filepath, response);
+
     }
 
     /**
