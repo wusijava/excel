@@ -115,7 +115,7 @@ public class ExportController {
         String filename =excelDownloadUrl + DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
        /* RedisUtil.set(key, dto, 1000 * 60 * 30L);
         String url = excelDownloadUrl + key;*/
-
+        System.out.println(filename);
         downloadExcel(dto,filename);
         return Response.ok(filename);
 
