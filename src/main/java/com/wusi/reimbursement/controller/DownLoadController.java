@@ -2,6 +2,7 @@ package com.wusi.reimbursement.controller;
 
 import com.wusi.reimbursement.common.Response;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -21,7 +22,7 @@ public class DownLoadController  {
         return Response.ok("2020-01-21");
     }
     @GetMapping(value = "/downloadExcel/{filename}")
-    public Response<String> fileDownLoad(HttpServletResponse response,String filename) throws IOException {
+    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
         System.out.println("进入文件下载controller");
         File file = new File(filename);
         String fileName = file.getName();

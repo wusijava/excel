@@ -35,7 +35,7 @@ spring:
         min-idle: 50
         max-idle: 100
         max-active: 200
-excelDownloadUrl: http://49.233.192.222:8084/downloadExcel/
+excelDownloadUrl: http://49.233.192.222:8084/downloadExcel
 server:
   port: 8084
 mybatis:
