@@ -112,7 +112,7 @@ public class ExportController {
         dto.setKeys(ReimbursementVo.keys);
         dto.setObjectList(parser(voList));
        // String key = UUID.randomUUID().toString().replaceAll("-", "");
-        String serverPath="/home/excel";
+        String serverPath="/home/excel/";
         String filename =serverPath+DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
        /* RedisUtil.set(key, dto, 1000 * 60 * 30L);
         String url = excelDownloadUrl + key;*/
