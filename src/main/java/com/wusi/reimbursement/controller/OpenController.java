@@ -12,14 +12,13 @@ import java.io.*;
  * @ CreateDate    :  2020/1/15$ 17:28$
  */
 @RestController
-//@RequestMapping(value = "/api/open/")
+@RequestMapping(value = "/api/open/")
 public class OpenController {
-    /*@GetMapping(value = "/downloadExcel/{key}")
-    @ResponseBody*/
-    @RequestMapping("fileDownload")
-    public Response<String> fileDownLoad(HttpServletResponse response,String filename) throws IOException {
+    @GetMapping(value = "/downloadExcel/{filename}")
+    @ResponseBody
+    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
         System.out.println(filename);
-        File file = new File(filename);
+        File file = new File("/home/excel/"+filename);
         String fileName = file.getName();
         System.out.println(fileName);
         //InputStream ins = new FileInputStream(file);
