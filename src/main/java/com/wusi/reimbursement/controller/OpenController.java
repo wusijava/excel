@@ -20,7 +20,7 @@ public class OpenController {
         System.out.println(filename);
         File file = new File("/home/excel/"+filename);
         String fileName = file.getName();
-        System.out.println(fileName);
+        System.out.println("_________________________"+fileName);
         //InputStream ins = new FileInputStream(file);
         InputStream fis=new BufferedInputStream(new FileInputStream(file));
         /* 设置文件ContentType类型，这样设置，会自动判断下载文件类型 */
