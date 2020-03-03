@@ -21,11 +21,12 @@ public class DownLoadController  {
         System.out.println("ok");
         return Response.ok("2020-01-21");
     }
-    @GetMapping(value = "/downloadExcel/{filename}")
-    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
-        System.out.println("进入文件下载controller");
-        File file = new File(filename);
+    @GetMapping(value = "/downloadExcel/{key}")
+    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "key")String key) throws IOException {
+        System.out.println(key);
+        File file = new File(key);
         String fileName = file.getName();
+        System.out.println(fileName);
         //InputStream ins = new FileInputStream(file);
         InputStream fis=new BufferedInputStream(new FileInputStream(file));
         /* 设置文件ContentType类型，这样设置，会自动判断下载文件类型 */
