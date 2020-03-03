@@ -113,13 +113,13 @@ public class ExportController {
         dto.setObjectList(parser(voList));
        // String key = UUID.randomUUID().toString().replaceAll("-", "");
         String serverPath="/home/excel/";
-        String filename =DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
-
+        String name =DateUtil.formatDate(new Date(), DateUtil.PATTERN_YYYYMMDDHHMMSS) + ".xlsx";
+        String filename=serverPath+name;
        /* RedisUtil.set(key, dto, 1000 * 60 * 30L);
         String url = excelDownloadUrl + key;*/
         System.out.println(filename);
         System.out.println(excelDownloadUrl+filename);
-        downloadExcel(dto,serverPath+filename);
+        downloadExcel(dto,filename);
 
         return Response.ok(excelDownloadUrl+filename);
 

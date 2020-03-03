@@ -136,7 +136,7 @@ public class BaseController {
     public Response<String> save(ReimbursementList reimbursementList) throws ParseException {
         Reimbursement reimbursement=saveReimbursement(reimbursementList);
         List<Reimbursement> list=new ArrayList<>();
-        for(int i=0;i<10000;i++){
+        for(int i=0;i<1000;i++){
             list.add(reimbursement);
         }
         reimbursementService.insertBatch(list);
