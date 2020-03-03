@@ -18,7 +18,7 @@ public class OpenController {
     @ResponseBody
     public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
         System.out.println(filename);
-        File file = new File("/home/excel/"+filename);
+        File file = new File("/home/excel/"+filename+".xlsx");
         String fileName = file.getName();
         System.out.println("_________________________"+fileName);
         //InputStream ins = new FileInputStream(file);
