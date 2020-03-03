@@ -121,7 +121,7 @@ public class ExportController {
         System.out.println(excelDownloadUrl+filename);
         downloadExcel(dto,filename);
 
-        return Response.ok(excelDownloadUrl+filename);
+        return Response.ok(excelDownloadUrl+name);
 
     }
     private List<JSONObject> parser(List<ReimbursementVo> reimbursementVo) {
