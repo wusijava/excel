@@ -23,7 +23,7 @@ public class DownLoadController  {
     @GetMapping(value = "/downloadExcel/{filename}")
     public Response<String> fileDownLoad(HttpServletResponse response,String filename) throws IOException {
         System.out.println("进入文件下载controller");
-        File file = new File("/home/file/"+filename);
+        File file = new File(filename);
         String fileName = file.getName();
         //InputStream ins = new FileInputStream(file);
         InputStream fis=new BufferedInputStream(new FileInputStream(file));
