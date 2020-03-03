@@ -1,10 +1,7 @@
 package com.wusi.reimbursement.controller;
 
 import com.wusi.reimbursement.common.Response;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
 import java.io.*;
@@ -15,6 +12,7 @@ import java.io.*;
  * @ CreateDate    :  2020/1/15$ 17:28$
  */
 @RestController
+@RequestMapping(value = "/api/open/")
 public class OpenController {
     @GetMapping(value = "/downloadExcel/{key}")
     @ResponseBody
