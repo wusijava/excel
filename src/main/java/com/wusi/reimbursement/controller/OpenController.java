@@ -17,7 +17,7 @@ public class OpenController {
     /*@GetMapping(value = "/downloadExcel/{key}")
     @ResponseBody*/
     @RequestMapping("fileDownload")
-    public Response<String> fileDownLoad(@PathVariable(value = "key")String key,HttpServletResponse response) throws IOException {
+    public Response<String> fileDownLoad(HttpServletResponse response) throws IOException {
         //System.out.println(key);
         File file = new File("/home/excel/20200303171110.xlsx");
         String fileName = file.getName();
