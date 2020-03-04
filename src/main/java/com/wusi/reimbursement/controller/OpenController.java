@@ -1,6 +1,5 @@
 package com.wusi.reimbursement.controller;
 
-import com.wusi.reimbursement.common.Response;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.http.HttpServletResponse;
@@ -16,7 +15,7 @@ import java.io.*;
 public class OpenController {
     @GetMapping(value = "/downloadExcel/{filename}")
     @ResponseBody
-    public Response<String> fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
+    public void fileDownLoad(HttpServletResponse response,@PathVariable(value = "filename")String filename) throws IOException {
         System.out.println(filename);
         File file = new File("/home/excel/"+filename+".xlsx");
         String fileName = file.getName();
@@ -40,6 +39,5 @@ public class OpenController {
         }catch (IOException ioe){
             ioe.printStackTrace();
         }
-        return null;
     }
 }

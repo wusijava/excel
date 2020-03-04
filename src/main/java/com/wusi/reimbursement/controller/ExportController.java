@@ -10,6 +10,7 @@ import com.wusi.reimbursement.utils.DataUtil;
 import com.wusi.reimbursement.utils.DateUtil;
 import com.wusi.reimbursement.utils.PoiUtil;
 import com.wusi.reimbursement.vo.ReimbursementVo;
+import lombok.extern.slf4j.Slf4j;
 import org.apache.poi.hssf.usermodel.HSSFRow;
 import org.apache.poi.hssf.usermodel.HSSFSheet;
 import org.apache.poi.hssf.usermodel.HSSFWorkbook;
@@ -35,6 +36,7 @@ import java.util.List;
  * @ CreateDate    :  2020/1/10$ 10:14$
  */
 @RestController
+@Slf4j
 public class ExportController {
     @Autowired
     private ReimbursementService reimbursementService;
@@ -119,8 +121,13 @@ public class ExportController {
         String url = excelDownloadUrl + key;*/
         System.out.println(filename);
         System.out.println(excelDownloadUrl+filename);
-        downloadExcel(dto,filename);
-
+        new Thread(()->{
+            try {
+                downloadExcel(dto,filename);
+            } catch (Exception e) {
+                log.error("下载文件失败", e);
+            }
+        });
         return Response.ok(excelDownloadUrl+name);
 
     }
