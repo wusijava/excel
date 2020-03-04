@@ -130,7 +130,7 @@ public class ExportController {
                 log.error("下载文件失败", e);
             }
         });
-        return Response.ok(excelDownloadUrl+name);
+        return Response.ok("");
 
     }
     private List<JSONObject> parser(List<ReimbursementVo> reimbursementVo) {
