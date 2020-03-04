@@ -123,7 +123,9 @@ public class ExportController {
         System.out.println(excelDownloadUrl+filename);
         new Thread(()->{
             try {
+
                 downloadExcel(dto,filename);
+                System.out.println("进入新线程");
             } catch (Exception e) {
                 log.error("下载文件失败", e);
             }
