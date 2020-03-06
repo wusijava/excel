@@ -121,7 +121,7 @@ public class ExportController {
         String url = excelDownloadUrl + key;*/
         System.out.println(filename);
         System.out.println(excelDownloadUrl+filename);
-        new Thread(()->{
+       /* new Thread(()->{
             try {
 
                 downloadExcel(dto,filename);
@@ -129,7 +129,8 @@ public class ExportController {
             } catch (Exception e) {
                 log.error("下载文件失败", e);
             }
-        }).start();
+        }).start();*/
+        downloadExcel(dto,filename);
         return Response.ok(excelDownloadUrl+name);
 
     }
